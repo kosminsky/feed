@@ -1,10 +1,22 @@
-import { useState } from 'react'
+import { Post } from './Post'
+import { Header } from './components/Header.jsx'
 
-function App() {
-  const [count, setCount] = useState(0)
+import './global.css'
 
+export function App() {
   return (
-    <h1>Hello World</h1>
+    <div>
+      <Header />
+      
+      <Post
+        author="Soni"
+        content="Sou um bonobão"
+      />
+      <Post
+        author="Igote"
+        content="vdd"
+      />
+    </div>
   )
 }
 
