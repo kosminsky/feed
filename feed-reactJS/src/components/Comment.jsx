@@ -5,7 +5,7 @@ import styles from './Comment.module.css';
 export function Comment() {
     return (
         <div className={styles.comment}>
-            <img src="https://pps.whatsapp.net/v/t61.24694-24/350683251_188656244135716_6152854467726429877_n.jpg?ccb=11-4&oh=01_AdSivlbLfsBLi4_TtPvejmk76_Qrf8wRjzC2sIyKhR65GA&oe=64875433" alt="" />
+            <img src="https://pps.whatsapp.net/v/t61.24694-24/351002278_639539798035929_1533787489786895302_n.jpg?ccb=11-4&oh=01_AdS_YcBdCpjYHKyfkMlmRBS8K3X-CycKazmaIU62tVgQFQ&oe=6488FC5E" alt="" />
             
             <div className={styles.commentBox}>
                 <div className={styles.commentContent}>
@@ -16,7 +16,7 @@ export function Comment() {
                         </div>
 
                         <button tittle="Deletar comentário">
-                            <Trash size={20} />
+                            <Trash size={24} />
                         </button>
                     </header>
 
