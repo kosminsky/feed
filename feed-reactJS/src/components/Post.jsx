@@ -1,37 +1,65 @@
+import { format, formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
+
 import { Avatar } from './Avatar'
 import { Comment } from './Comment'
-import styles from './Post.module.css'
 
-export function Post() {
+import styles from './Post.module.css'
+import { useState } from 'react'
+
+export function Post({ author, publishedAt, content }) {
+    const [comments, setComments] = useState([
+        'Todo mundo já sabe, bonobão'
+    ])
+
+    const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
+        locale:ptBR,
+    });
+
+    const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+        locale: ptBR,
+        addSuffix: true,
+    })
+
+     function handleCreateNewComment() {
+        event.preventDefault()
+
+        setComments([...comments, newCommentText]);
+    }
+
     return (
         <article className={styles.post}>
             <header>
                 <div className={styles.author}>
                    <Avatar
-                        src="https://pps.whatsapp.net/v/t61.24694-24/328714349_219329397177460_1170962623550889006_n.jpg?ccb=11-4&oh=01_AdSwR5p0FaIN7nLGKVf43bEu8Bsogw55yKAmGW7ues2edw&oe=64877C3B" alt="" /> 
+                        src={author.avatarUrl} alt="" /> 
                         
                         <div className={styles.authorInfo}>
-                            <strong>Soni</strong>
-                            <span>Troll Profissional</span>
+                            <strong>{author.name}</strong>
+                            <span>{author.role}</span>
                         </div>
                 </div>
 
-                <time title="02 de Junho de 2023 às 17h15" dateTime="2023-06-02 17:15:23">Publicado há 1h</time>
+                <time title={publishedDateFormatted} dateTime={publishedAt.toISOString()}>
+                    {publishedDateRelativeToNow}
+                </time>
             </header>
 
             <div className={styles.content}>
-                <p>Boa tarde, gostaria de informar a todos que sou um bonobão fresco que pega traço no fut</p>
-                <p>
-                    <a href="#">#Bonobo</a>{' '}
-                    <a href="#">#Eu</a>{' '}
-                    <a href="#">#Orgulho</a>{' '}
-                </p>
+                {content.map(line => {
+                    if (line.type == 'paragraph') {
+                        return <p>{line.content}</p>
+                    } else if (line.type == 'link') {
+                        return <p><a href="https://wa.me/559180164594" target='_blank'>{line.content}</a></p>
+                    }
+                })}
             </div>
 
-            <form className={styles.commentForm}>
+            <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
                 <strong>Deixe seu Feedback</strong>
 
                 <textarea 
+                    name="comment"
                     placeholder="Deixe um comentário"
                 />
 
@@ -41,7 +69,9 @@ export function Post() {
             </form>
 
             <div className={styles.commentList}>
-                <Comment/>
+                {comments.map(comment => {
+                    return <Comment content={comment}/>
+                })}
             </div>
         </article>
     )

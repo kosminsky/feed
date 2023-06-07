@@ -3,10 +3,10 @@ import { ThumbsUp } from 'phosphor-react'
 import styles from './Comment.module.css';
 import { Avatar } from './Avatar';
 
-export function Comment() {
+export function Comment({ content }) {
     return (
         <div className={styles.comment}>
-            <Avatar hasBorder={false} src="https://pps.whatsapp.net/v/t61.24694-24/351002278_639539798035929_1533787489786895302_n.jpg?ccb=11-4&oh=01_AdS_YcBdCpjYHKyfkMlmRBS8K3X-CycKazmaIU62tVgQFQ&oe=6488FC5E" alt="" />
+            <Avatar hasBorder={false} src="https://pps.whatsapp.net/v/t61.24694-24/351742681_255919237118240_3919252908336163091_n.jpg?ccb=11-4&oh=01_AdR9wa4x4nqyKS60oeLUoOoT3ueKIcU86ivElYGmg3J7_A&oe=648E099A" alt="" />
             
             <div className={styles.commentBox}>
                 <div className={styles.commentContent}>
@@ -21,7 +21,7 @@ export function Comment() {
                         </button>
                     </header>
 
-                    <p>Verdade</p>
+                    <p>{content}</p>
                 </div>
 
                 <footer>
