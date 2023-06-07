@@ -41,7 +41,7 @@
     color: var(--gray-400);
 }
 
-.commentContent button {
+.commentContent header button {
     background: transparent;
     border: 0;
     color: var(--gray-400);
