@@ -12,6 +12,8 @@ export function Post({ author, publishedAt, content }) {
         'Todo mundo já sabe, bonobão'
     ])
 
+    const [newCommentText, setNewCommentText] = useState('')
+
     const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
         locale:ptBR,
     });
@@ -25,6 +27,11 @@ export function Post({ author, publishedAt, content }) {
         event.preventDefault()
 
         setComments([...comments, newCommentText]);
+        setNewCommentText('');
+    }
+
+    function handleNeWCommentChange() {
+        setNewCommentText(event.target.value);
     }
 
     return (
@@ -60,7 +67,9 @@ export function Post({ author, publishedAt, content }) {
 
                 <textarea 
                     name="comment"
+                    value={newCommentText}
                     placeholder="Deixe um comentário"
+                    onChange={handleNeWCommentChange}
                 />
 
                <footer>
